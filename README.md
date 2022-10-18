@@ -30,3 +30,11 @@ python3 /src/train.py \
 --beta 0.1 \
 --random 1
 ```
+
+## Reproduce
+| Seed | Accuracy on MNIST | Accuracy on CIFAR-10 |
+| ---- | ---- | ---- |
+| 3  | 93.87% | 89.68% | 
+| 13 | 94.68% | 90.15% |
+| 23 | 94.44% | 89.38% |
+| 33 | 93.84% | 89.69% |
