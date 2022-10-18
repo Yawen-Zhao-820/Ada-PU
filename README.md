@@ -7,7 +7,7 @@ This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Pos
 
 The four used datasets are:
 * ```UNSW-NB15``` a binary classiﬁcation dataset.
-* ```CIFAR10``` preprocessed in such a way that artifacts form the P class and living things form the N class.
+* ```CIFAR-10``` preprocessed in such a way that artifacts form the P class and living things form the N class.
 * ```Breast Cancer``` a binary classification dataset.
 * ```Epsilon``` a binary classification text dataset.
 
