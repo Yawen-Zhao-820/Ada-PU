@@ -32,6 +32,17 @@ python3 /src/train.py \
 --random 1
 ```
 
+## Example Results
+
+The errors are measured by zero-one loss.
+* Test accuracy of comparing with other algorithms in ```img/pn.png```
+
+![test accuracy of comparing with other algorithms](img/pn.png "test accuracy")
+
+* Training error of comparing with Neural Network in ```img/pu.png```
+
+![training error of comparing with Neural Network](img/pu.png "training error")
+
 ## Reproduce
 | Dataset | Beta | Accuracy |
 | ------------- | ------- | -------- |
