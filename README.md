@@ -4,11 +4,12 @@ This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Pos
 
 * ```utils.py``` has implementations of the risk estimator for non-negative PU (nnPU) learning. 
 * ```train.py``` is an example code of running the algorithm. 
-Datasets are 
+
+The four used datasets are:
 * ```UNSW-NB15``` a binary classiﬁcation dataset.
 * ```CIFAR10``` preprocessed in such a way that artifacts form the P class and living things form the N class.
-* ```Breast Cancer``` 
-* ```Epsilon```
+* ```Breast Cancer``` a binary classification dataset.
+* ```Epsilon``` a binary classification text dataset.
 
 ## Operation System:
 ![macOS Badge](https://img.shields.io/badge/-macOS-white?style=flat-square&logo=macOS&logoColor=000000) ![Linux Badge](https://img.shields.io/badge/-Linux-white?style=flat-square&logo=Linux&logoColor=FCC624) ![Ubuntu Badge](https://img.shields.io/badge/-Ubuntu-white?style=flat-square&logo=Ubuntu&logoColor=E95420)
