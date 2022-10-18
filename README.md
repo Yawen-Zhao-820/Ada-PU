@@ -39,7 +39,7 @@ The errors are measured by zero-one loss.
 
 ![test accuracy of comparing with other algorithms](img/pn.png "test accuracy")
 
-* Training error of comparing with Neural Network in ```img/pu.png```
+* Training error and test error of comparing with Neural Network in ```img/pu.png```
 
 ![training error of comparing with Neural Network](img/pu.png "training error")
 
