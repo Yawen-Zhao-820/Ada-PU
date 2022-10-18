@@ -6,10 +6,10 @@ This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Pos
 * ```train.py``` is an example code of running the algorithm. 
 
 The four used datasets are:
-* ```[CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)``` preprocessed in such a way that artifacts form the P class and living things form the N class.
-* ```[Epsilon](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html)``` a binary classification text dataset.
-* ```[UNSW-NB15](https://research.unsw.edu.au/projects/unsw-nb15-dataset)``` a binary classiﬁcation dataset.
-* ```[Breast Cancer](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic))``` a binary classification dataset.
+* ```CIFAR-10``` [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) preprocessed in such a way that artifacts form the P class and living things form the N class.
+* ```Epsilon``` [Epsilon](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html) is a binary classification text dataset.
+* ```UNSW-NB15``` [UNSW-NB15](https://research.unsw.edu.au/projects/unsw-nb15-dataset) is a binary classiﬁcation dataset.
+* ```Breast Cancer``` [Breast Cancer](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)) is a binary classification dataset.
 
 
 ## Operation System:
