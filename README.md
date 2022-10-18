@@ -21,6 +21,12 @@ The four used datasets are:
 ## Quick start
 You can just run the python file, it will be executed once, and the result will be printed. You can try different parameters before you execute the python file.
 
-```console
-username@localhost:~$ python3 /src/run_training.py --gpu [$gpu] --dataset [$dataset] --pu_type [$pu_type] --model_type [$model_type] --layer[$layer] 
+```
+python3 /src/train.py \
+--dataset breastcancer \
+--seed 1 \
+--num_clf 100 \
+--nnpu 1 \
+--beta 0.1 \
+--random 1
 ```
