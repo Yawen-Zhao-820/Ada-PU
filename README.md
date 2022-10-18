@@ -32,9 +32,9 @@ python3 /src/train.py \
 ```
 
 ## Reproduce
-| Seed | Accuracy on MNIST | Accuracy on CIFAR-10 |
-| ---- | ---- | ---- |
-| 3  | 93.87% | 89.68% | 
-| 13 | 94.68% | 90.15% |
-| 23 | 94.44% | 89.38% |
-| 33 | 93.84% | 89.69% |
+| Dataset | Beta | Accuracy |
+| ------------- | ------- | -------- |
+| CIFAR-10      | 0.1     | 90.42 |
+| Epsilon       | 0.9     | 73.10 |
+| UNSW-NB15     | 0.2     | 75.94 |
+| Breast Cancer | 0.00125 | 92.11 |
