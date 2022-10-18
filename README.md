@@ -2,10 +2,13 @@
 
 This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Positive-Unlabeled Learning".
 
-* ```loss_function.py``` has a Torch implementation of the risk estimator for non-negative PU (nnPU) learning and unbiased PU (uPU) learning. 
-* ```train.py``` is an example code of nnPU learning and uPU learning. 
-Dataset are UNSW-NB15 [3], a binary classiﬁcation dataset and
-CIFAR10 [4] preprocessed in such a way that artifacts form the P class and living things form the N class, Breast Cancer , Epsilon
+* ```utils.py``` has implementations of the risk estimator for non-negative PU (nnPU) learning. 
+* ```train.py``` is an example code of running the algorithm. 
+Datasets are 
+* ```UNSW-NB15``` a binary classiﬁcation dataset.
+* ```CIFAR10``` preprocessed in such a way that artifacts form the P class and living things form the N class.
+* ```Breast Cancer``` 
+* ```Epsilon```
 
 ## Operation System:
 ![macOS Badge](https://img.shields.io/badge/-macOS-white?style=flat-square&logo=macOS&logoColor=000000) ![Linux Badge](https://img.shields.io/badge/-Linux-white?style=flat-square&logo=Linux&logoColor=FCC624) ![Ubuntu Badge](https://img.shields.io/badge/-Ubuntu-white?style=flat-square&logo=Ubuntu&logoColor=E95420)
