@@ -42,10 +42,10 @@ def binarize_mnist_class(_trainY, _testY):
 UNSW-NB15 Dataset
 """
 def get_unsw():
-    x_train_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_X_train.csv')
-    x_test_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_X_test.csv')
-    y_train_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_y_train.csv')
-    y_test_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_y_test.csv')
+    x_train_data = pd.read_csv('./data/UNSW/UNSW_X_train.csv')
+    x_test_data = pd.read_csv('./data/UNSW/UNSW_X_test.csv')
+    y_train_data = pd.read_csv('./data/UNSW/UNSW_y_train.csv')
+    y_test_data = pd.read_csv('./data/UNSW/UNSW_y_test.csv')
 
     x_train = np.asarray(x_train_data, dtype=np.float32)
     x_test = np.asarray(x_test_data, dtype=np.float32)
@@ -56,10 +56,10 @@ def get_unsw():
 
 
 def get_unsw_pn():
-    x_train_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_X_train.csv')
-    x_test_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_X_test.csv')
-    y_train_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_y_train.csv')
-    y_test_data = pd.read_csv('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/UNSW/UNSW_y_test.csv')
+    x_train_data = pd.read_csv('./data/UNSW/UNSW_X_train.csv')
+    x_test_data = pd.read_csv('./data/UNSW/UNSW_X_test.csv')
+    y_train_data = pd.read_csv('./data/UNSW/UNSW_y_train.csv')
+    y_test_data = pd.read_csv('./data/UNSW/UNSW_y_test.csv')
 
     x_train = np.asarray(x_train_data, dtype=np.float32)
     x_test = np.asarray(x_test_data, dtype=np.float32)
@@ -279,11 +279,11 @@ def load_dataset(dataset_name, n_labeled, n_unlabeled, seed):
         y_train, y_test = binarize_unsw_class(y_train, y_test)
 
     elif dataset_name == "cifar10_embedding":
-        x_train_p = np.load('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/CifarEmb/trainloader_positive.npy')
-        x_train_u = np.load('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/CifarEmb/trainloader_unlabeled.npy')
+        x_train_p = np.load('./data/CifarEmb/trainloader_positive.npy')
+        x_train_u = np.load('./data/CifarEmb/trainloader_unlabeled.npy')
 
-        x_test_p = np.load('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/CifarEmb/testloader_positive.npy')
-        x_test_n = np.load('/home/s4566656/anaconda3/envs/mason/nnpu-experiments/dataset/CifarEmb/testloader_negative.npy')
+        x_test_p = np.load('./data/CifarEmb/testloader_positive.npy')
+        x_test_n = np.load('./data/CifarEmb/testloader_negative.npy')
 
         prior = 0.4
         return x_train_p, x_train_u, prior, x_test_p, x_test_n
