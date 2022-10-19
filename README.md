@@ -9,7 +9,7 @@ The four used datasets are:
 * [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) [2] preprocessed in such a way that artifacts form the P class and living things form the N class.
 * [Epsilon](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html) [3] is a binary classification text dataset.
 * [UNSW-NB15](https://research.unsw.edu.au/projects/unsw-nb15-dataset) [4] is a binary classiﬁcation dataset.
-* [Breast Cancer](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)) is a binary classification dataset.
+* [Breast Cancer](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)) [5] is a binary classification dataset.
 
 
 ## Operation System:
@@ -61,3 +61,5 @@ The errors are measured by zero-one loss.
 [3] Yuan, G. X., Ho, C. H., & Lin, C. J. (2012). An Improved GLMNET for L1-regularized Logistic Regression. Journal of Machine Learning Research, 13, 1999-2030.
 
 [4] Moustafa, Nour, and Jill Slay. "UNSW-NB15: a comprehensive data set for network intrusion detection systems (UNSW-NB15 network data set)." Military Communications and Information Systems Conference (MilCIS), 2015. IEEE, 2015.
+
+[5] W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction for breast tumor diagnosis. IS&T/SPIE 1993 International Symposium on Electronic Imaging: Science and Technology, volume 1905, pages 861-870, San Jose, CA, 1993.
