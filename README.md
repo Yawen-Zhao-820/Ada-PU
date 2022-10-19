@@ -2,7 +2,7 @@
 
 This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Positive-Unlabeled Learning".
 
-* ```utils.py``` has implementations of the risk estimator for non-negative PU (nnPU) learning. 
+* ```utils.py``` has implementations of the risk estimator for non-negative PU (nnPU) learning [1]. 
 * ```train.py``` is an example code of running the algorithm. 
 
 The four used datasets are:
@@ -50,3 +50,8 @@ The errors are measured by zero-one loss.
 | Epsilon       | 0.9     | 73.10 |
 | UNSW-NB15     | 0.2     | 75.94 |
 | Breast Cancer | 0.00125 | 92.11 |
+
+## Reference
+
+[1] Ryuichi Kiryo, Gang Niu, Marthinus Christoffel du Plessis, and Masashi Sugiyama. 
+"Positive-Unlabeled Learning with Non-Negative Risk Estimator." Advances in neural information processing systems. 2017.
