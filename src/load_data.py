@@ -82,47 +82,6 @@ def binarize_unsw_class(_trainY, _testY):
 
 
 """
-CIFAR-10 Dataset
-"""
-def get_cifar10():
-    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-    x_train = np.asarray(x_train, dtype=np.float32)
-    x_test = np.asarray(x_test, dtype=np.float32)
-    x_train /= 255
-    x_test /= 255
-    x_train = np.reshape(x_train, (50000, 3072))
-    x_test = np.reshape(x_test, (10000, 3072))
-    y_train = np.reshape(y_train, (50000,))
-    y_test = np.reshape(y_test, (10000,))
-
-    n_feature = x_train.shape[1]
-    idx_feature = np.arange(n_feature)
-
-    r = x_train[:, idx_feature % 3 == 0]
-    g = x_train[:, idx_feature % 3 == 1]
-    b = x_train[:, idx_feature % 3 == 2]
-    x_train = np.concatenate((r, g, b), axis=1)
-
-    r_t = x_test[:, idx_feature % 3 == 0]
-    g_t = x_test[:, idx_feature % 3 == 1]
-    b_t = x_test[:, idx_feature % 3 == 2]
-    x_test = np.concatenate((r_t, g_t, b_t), axis=1)
-
-    y_train = np.asarray(y_train, dtype=np.int32)
-    y_test = np.asarray(y_test, dtype=np.int32)
-
-    return (x_train, y_train), (x_test, y_test)
-
-def binarize_cifar10_class(y_train, y_test):
-    y_train_bin = np.ones(y_train.shape[0], dtype=np.int32)
-    y_train_bin[
-        (y_train == 2) | (y_train == 3) | (y_train == 4) | (y_train == 5) | (y_train == 6) | (y_train == 7)] = -1
-    y_test_bin = np.ones(y_test.shape[0], dtype=np.int32)
-    y_test_bin[(y_test == 2) | (y_test == 3) | (y_test == 4) | (y_test == 5) | (y_test == 6) | (y_test == 7)] = -1
-    return y_train_bin, y_test_bin
-
-
-"""
 Breast Cancer Dataset
 """
 def get_breastcancer():
@@ -264,10 +223,6 @@ def load_dataset(dataset_name, n_labeled, n_unlabeled, seed):
         (x_train, y_train), (x_test, y_test) = get_mnist()
         y_train, y_test = binarize_mnist_class(y_train, y_test)
 
-    elif dataset_name == "cifar10":
-        (x_train, y_train), (x_test, y_test) = get_cifar10()
-        y_train, y_test = binarize_cifar10_class(y_train, y_test)
-
     elif dataset_name == "epsilon":
         (x_train, y_train), (x_test, y_test) = get_epsilon()
 
@@ -314,11 +269,6 @@ def get_dataset_pn(num_pos, dataset_name, prior, seed):
 
     elif dataset_name == "epsilon":
         (x_train, y_train), (x_test, y_test) = get_epsilon()
-        x_train, y_train = get_pn(x_train, y_train, prior, num_pos, seed)
-
-    elif dataset_name == "cifar10":
-        (x_train, y_train), (x_test, y_test) = get_cifar10()
-        y_train, y_test = binarize_cifar10_class(y_train, y_test)
         x_train, y_train = get_pn(x_train, y_train, prior, num_pos, seed)
 
     elif dataset_name == "breastcancer":
