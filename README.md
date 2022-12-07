@@ -31,24 +31,13 @@ python3 /src/train.py \
 --random 1
 ```
 
-## Example Results
-
-The errors are measured by zero-one loss.
-* Test accuracy of comparing with other algorithms.
-
-![test accuracy of comparing with other algorithms](img/pn.png "test accuracy")
-
-* Training error and test error of comparing with Neural Network.
-
-![training error of comparing with Neural Network](img/pu.png "training error")
-
 ## Reproduce
 | Dataset | Beta | Accuracy |
 | ------------- | ------- | -------- |
-| CIFAR-10      | 0.1     | 90.42 |
-| Epsilon       | 0.9     | 73.10 |
-| UNSW-NB15     | 0.2     | 75.94 |
-| Breast Cancer | 0.00125 | 92.11 |
+| CIFAR-10      | 0.2     | 85.77 |
+| Epsilon       | 0.2     | 72.01 |
+| UNSW-NB15     | 0.1     | 76.60 |
+| Breast Cancer | 0.001   | 92.28 |
 
 ## Reference
 
