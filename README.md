@@ -1,6 +1,6 @@
-# Ada-PU: A Boosting Algorithm for Positive-Unlabeled Learning
+# A Boosting Algorithm for Positive-Unlabeled Learning
 
-This is a reproducing code for Ada-PU in the paper "A Boosting Algorithm for Positive-Unlabeled Learning".
+This is a reproducing code for AdaPU in the paper "A Boosting Algorithm for Positive-Unlabeled Learning".
 
 * ```utils.py``` has implementations of the risk estimator for non-negative PU (nnPU) learning [1]. 
 * ```train.py``` is an example code of running the algorithm. 
