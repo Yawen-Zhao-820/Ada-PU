@@ -26,8 +26,7 @@ You can just run the python file, it will be executed once, and the result will 
 python3 /src/train.py \
 --dataset breastcancer \
 --seed 1 \
---num_clf 100 \
---nnpu 1 \
+--num_estimator 100 \
 --beta 0.1 \
 --random 1
 ```
