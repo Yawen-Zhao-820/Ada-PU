@@ -7,7 +7,7 @@ from colorama import Back, Fore, Style
 from tqdm import tqdm
 
 import src.load_data as D
-from src.AdaPU import AdaBoost_PU
+from src.adapu import AdaBoost_PU
 from src.utils import *
 
 DATASET = {"breastcancer": {"num_pos": 10,   "num_unlabeled": 455},
