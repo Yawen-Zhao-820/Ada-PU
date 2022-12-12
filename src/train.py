@@ -34,19 +34,6 @@ if __name__ == '__main__':
     
     NUM_ESTIMATOR = int(args.num_estimator)
     
-    training_losses = []
-    nn_training_losses = []
-    exp_training_losses = []
-    nn_exp_training_losses = []
-    
-    test_accuracy = []
-    test_f1 = []
-    test_recall = []
-    test_precision = []
-    
-    threshold_list = []
-    features_list = []
-    
     model = AdaBoost_PU(NUM_ESTIMATOR, 
                         prior, 
                         args.random, 
@@ -61,53 +48,32 @@ if __name__ == '__main__':
     print(Fore.BLUE + "Evaluating...")
     print(Fore.BLUE + "-"*30)
     print("\n")
-    print(Fore.GREEN + f"{'#classifiers':^7} | {'Train Loss':^12} | {'Test Acc':^10}")
+    print(Fore.GREEN + f"{'#classifiers':^7} | {'Acc':^10}")
     print(Fore.GREEN + "-"*52)
     
     for i in range(1, NUM_ESTIMATOR + 1):
         y_pred_p = model.staged_predict(x_train_pos, i)
         y_pred_n = model.staged_predict(x_train_unlabeled, i)
         
-        y_pred_p_test = model.staged_predict(x_test_pos, i)
-        y_pred_n_test = model.staged_predict(x_test_neg, i)
-        
-        training_loss = zero_one_training_loss(prior, y_pred_p, y_pred_n)
-        nn_training_loss = nn_zero_one_training_loss(prior, y_pred_p, y_pred_n)
-        exp_training_loss_ = exp_training_loss(prior, y_pred_p, y_pred_n)
-        nn_exp_training_loss_ = nn_exp_training_loss(prior, y_pred_p, y_pred_n)
-        training_losses.append(training_loss)
-        nn_training_losses.append(nn_training_loss)
-        exp_training_losses.append(exp_training_loss_)
-        nn_exp_training_losses.append(nn_exp_training_loss_)
-        
         pu_accuracy = accuracy(y_pred_p_test, y_pred_n_test)
-        pu_f1, pu_precision, pu_recall = F1(y_pred_p_test, y_pred_n_test)
         
-        test_accuracy.append(pu_accuracy)
-        test_f1.append(pu_f1)
-        test_precision.append(pu_precision)
-        test_recall.append(pu_recall)
-
-        threshold_list.append(model.estimators[i - 1].threshold)
-        features_list.append(model.estimators[i - 1].feature_idx)
-        
-        print(Fore.GREEN + f"{i:^12} | {training_loss:^12.6f} | {pu_accuracy:^10.6f}")
+        print(Fore.GREEN + f"{i:^12} | {pu_accuracy:^10.6f}")
         print(Fore.GREEN + "-"*52)
 
     print(Fore.BLUE + "Save results...")
     print(Fore.BLUE + "-"*52)
     print(Fore.RED + "Finished!!!")
     
-    savename = f'./results/{args.dataset}_{args.beta}_{args.random}_{args.seed}.mat'
-    scio.savemat(savename,
-                {'accuracy':test_accuracy,
-                'prior':prior,
-                'f1': test_f1,
-                'precision': test_precision,
-                'recall': test_recall,
-                'training_loss': training_losses,
-                'nn_training_loss': nn_training_losses,
-                'exp_training_loss': exp_training_losses,
-                'nn_exp_training_loss': nn_exp_training_losses,
-                'threshold': threshold_list,
-                'feature': features_list})
+    # savename = f'./results/{args.dataset}_{args.beta}_{args.random}_{args.seed}.mat'
+    # scio.savemat(savename,
+    #             {'accuracy':test_accuracy,
+    #             'prior':prior,
+    #             'f1': test_f1,
+    #             'precision': test_precision,
+    #             'recall': test_recall,
+    #             'training_loss': training_losses,
+    #             'nn_training_loss': nn_training_losses,
+    #             'exp_training_loss': exp_training_losses,
+    #             'nn_exp_training_loss': nn_exp_training_losses,
+    #             'threshold': threshold_list,
+    #             'feature': features_list})
