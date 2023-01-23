@@ -6,9 +6,9 @@ import scipy.io as scio
 from colorama import Back, Fore, Style
 from tqdm import tqdm
 
-import src.load_data as D
-from src.adapu import AdaBoost_PU
-from src.utils import *
+import load_data as D
+from adapu import AdaBoost_PU
+from utils import *
 
 DATASET = {"breastcancer": {"num_pos": 10,   "num_unlabeled": 455},
            "epsilon":      {"num_pos": 1000, "num_unlabeled": 40000},
@@ -52,10 +52,10 @@ if __name__ == '__main__':
     print(Fore.GREEN + "-"*52)
     
     for i in range(1, NUM_ESTIMATOR + 1):
-        y_pred_p = model.staged_predict(x_train_pos, i)
-        y_pred_n = model.staged_predict(x_train_unlabeled, i)
+        y_pred_p = model.staged_predict(x_test_pos, i)
+        y_pred_n = model.staged_predict(x_test_neg, i)
         
-        pu_accuracy = accuracy(y_pred_p_test, y_pred_n_test)
+        pu_accuracy = accuracy(y_pred_p, y_pred_n)
         
         print(Fore.GREEN + f"{i:^12} | {pu_accuracy:^10.6f}")
         print(Fore.GREEN + "-"*52)
