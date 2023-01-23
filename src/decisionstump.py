@@ -47,7 +47,7 @@ class DecisionStump:
         self.feature_idx = 0.0
         self.threshold = 0.0
         self.estimator_weight = 1.0
-        self.min_error = float("inf")
+        self.min_error = 0.5
         self.max_estimation = float("-inf")
 
         self.best_prediction_p = None
