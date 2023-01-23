@@ -234,11 +234,11 @@ def load_dataset(dataset_name, n_labeled, n_unlabeled, seed):
         y_train, y_test = binarize_unsw_class(y_train, y_test)
 
     elif dataset_name == "cifar10_embedding":
-        x_train_p = np.load('./data/CifarEmb/trainloader_positive.npy')
-        x_train_u = np.load('./data/CifarEmb/trainloader_unlabeled.npy')
+        x_train_p = np.load('./data/CIFAR_10_Emb/trainloader_positive.npy')
+        x_train_u = np.load('./data/CIFAR_10_Emb/trainloader_unlabeled.npy')
 
-        x_test_p = np.load('./data/CifarEmb/testloader_positive.npy')
-        x_test_n = np.load('./data/CifarEmb/testloader_negative.npy')
+        x_test_p = np.load('./data/CIFAR_10_Emb/testloader_positive.npy')
+        x_test_n = np.load('./data/CIFAR_10_Emb/testloader_negative.npy')
 
         prior = 0.4
         return x_train_p, x_train_u, prior, x_test_p, x_test_n
