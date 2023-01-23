@@ -180,7 +180,7 @@ class AdaBoost_PU:
             for estimator, estimator_weight in zip(self.estimators[:num_estimate], 
                                                    self.estimator_weights[:num_estimate])
         )
-        return np.sign(pred)
+        return pred
     
     
     def weight_calc(self, weight: np.array, y_train: int, predictions: np.array, estimator_weight: float) -> np.array:
