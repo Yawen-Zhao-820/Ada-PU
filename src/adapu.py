@@ -112,6 +112,15 @@ class AdaBoost_PU:
                                       self.beta)
             
             estimator.build(x_train_p, x_train_u)
+
+            if estimator.Z <= 0:
+                warnings.warn(
+                    "Samples weight have reached negative/zero values,"
+                    f" at iteration {i_boost}, causing error. "
+                    "Iterations stopped. Try again.",
+                    stacklevel=2,
+                )
+                break
             
             if self._validate_weight(estimator.estimator_weight):
                 warnings.warn(
