@@ -34,10 +34,10 @@ python3 /src/train.py \
 ## Reproduce
 | Dataset | Beta | Accuracy |
 | ------------- | ------- | -------- |
-| CIFAR-10      | 0.2     | 86.21 |
+| CIFAR-10      | 0.1     | 86.21 |
 | Epsilon       | 0.2     | 73.05 |
 | UNSW-NB15     | 0.1     | 76.62 |
-| Breast Cancer | 0.001   | 96.49 |
+| Breast Cancer | 0.0001   | 96.49 |
 
 ## Reference
 
