@@ -48,7 +48,7 @@ class DecisionStump:
         self.threshold = 0.0
         self.estimator_weight = 1.0
         self.min_error = 0.5
-        self.max_estimation = float("-inf")
+        self.min_E_t = float("inf")
 
         self.best_prediction_p = None
         self.best_prediction_u = None
@@ -186,17 +186,10 @@ class DecisionStump:
 
                     if error_n < 0 or error < 0 or error >= 0.5:
                         continue
-                    
-                    estimation = self.hx_target_function(n_samples_p, 
-                                                         n_samples_u, 
-                                                         ada_predictions_p, 
-                                                         ada_predictions_u, 
-                                                         curr_pred_p, 
-                                                         curr_pred_u)
 
-                    if estimation > self.max_estimation:
-                        self.max_estimation = estimation
+                    if E_t < self.min_E_t:
                         self.min_error = error
+                        self.min_E_t = E_t
 
                         self.inequal = inequal
                         self.threshold = threshold
@@ -213,29 +206,6 @@ class DecisionStump:
 
         self.ada_predictions_u = ada_predictions_u
         self.ada_predictions_p = ada_predictions_p
-
-
-    def hx_target_function(self, num_pos, num_unlabeled, y_preds_pos, y_preds_unlabeled, curr_pred_pos,
-                        curr_pred_unlabeled):
-        """Calculating the target E_t. 
-
-        Args:
-            num_pos (int): positive samples' number
-            num_unlabeled (int): unlabeled samples' number
-            y_preds_pos (np.array): ada predict results of positive data (Hx)
-            y_preds_unlabeled (np.array): ada predict results of unlabeled data (Hx)
-            curr_pred_pos (np.array): current predict results of positive data
-            curr_pred_unlabeled (np.array): current predict results of unlabeled data
-
-        Returns:
-            E_t: the target value for selecting stump in each boost iteration
-        """
-
-        term_pos_pos = (self.prior / num_pos) * np.sum(np.exp(-1 * y_preds_pos) * curr_pred_pos)
-        term_pos_neg = (self.prior / num_pos) * np.sum(np.exp(y_preds_pos) * curr_pred_pos)
-        term_unlabeled = (1 / num_unlabeled) * (np.sum(np.exp(y_preds_unlabeled) * curr_pred_unlabeled))
-        
-        return term_pos_pos + term_pos_neg - term_unlabeled
 
 
     def sum_error_calc(self, curr_pred_p, curr_pred_u):
