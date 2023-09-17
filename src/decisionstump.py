@@ -3,7 +3,7 @@ import datetime
 import numpy as np
 import warnings
 
-NUM_STEPS = 10
+NUM_STEPS = 1
 EPS = np.finfo(float).eps
 
 
