@@ -20,9 +20,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--dataset', type=str, default='breastcancer')
-    parser.add_argument('--seed', type=int, default=1)
+    parser.add_argument('--seed', type=int, default=5)
     parser.add_argument('--num_estimator', type=int, default=100)
-    parser.add_argument('--beta', type=float, default=1.0)
+    parser.add_argument('--beta', type=float, default=0.0001)
     parser.add_argument('--random', type=int, default=1)
     args = parser.parse_args()
 
@@ -63,17 +63,8 @@ if __name__ == '__main__':
     print(Fore.BLUE + "Save results...")
     print(Fore.BLUE + "-"*52)
     print(Fore.RED + "Finished!!!")
-    
-    # savename = f'./results/{args.dataset}_{args.beta}_{args.random}_{args.seed}.mat'
-    # scio.savemat(savename,
-    #             {'accuracy':test_accuracy,
-    #             'prior':prior,
-    #             'f1': test_f1,
-    #             'precision': test_precision,
-    #             'recall': test_recall,
-    #             'training_loss': training_losses,
-    #             'nn_training_loss': nn_training_losses,
-    #             'exp_training_loss': exp_training_losses,
-    #             'nn_exp_training_loss': nn_exp_training_losses,
-    #             'threshold': threshold_list,
-    #             'feature': features_list})
+
+    savename = f'./results/{args.dataset}_{args.beta}_{args.random}_{args.seed}.mat'
+    scio.savemat(savename,
+                {'accuracy':pu_accuracy,
+                'prior':prior,})
