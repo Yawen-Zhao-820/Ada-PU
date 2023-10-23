@@ -4,39 +4,14 @@ import numpy as np
 from colorama import Fore
 from tqdm import tqdm
 
-from src.stump import DecisionStump
+from decisionstump import DecisionStump
+import pandas as pd
+from joblib import Memory
 
+cachedir = '/tmp/joblib_cache'
+memory = Memory(cachedir, verbose=0)
 
 class AdaBoost_PU:
-    """An AdaBoost classifier for PU Learning.
-    
-    This class implements the algorithm known as AdaBoost [1, 2] for PU Learning (Ada-PU), 
-    Positive-unlabeled (PU) learning deals with binary classiﬁcation problems when 
-    only positive (P) and unlabeled (U) data are available. Ada-PU follows the general 
-    procedure of AdaBoost, while P data are regarded as positive and negative simultaneously. 
-    Three distributions of PU data are maintained and updated in Ada-PU instead of one in the 
-    ordinary supervised (PN) learning.
-    
-    .. versionadded:: 1.0.1
-    
-    Parameters
-    ----------
-    n_estimators : int
-        determine the number of estimators
-    prior : float
-        prior probability of positive data
-    random_selection : int
-        whether to use the random selection strategy
-    beta : float
-        control parameter beta for smoothing the boosting stage
-        
-    References
-    ----------
-    .. [1] Y. Freund, R. Schapire, "A Decision-Theoretic Generalization of
-           on-Line Learning and an Application to Boosting", 1995.
-           
-    .. [2] J. Zhu, H. Zou, S. Rosset, T. Hastie, "Multi-class AdaBoost", 2009.
-    """
     def __init__(self, 
                  n_estimators, 
                  prior,
@@ -77,6 +52,25 @@ class AdaBoost_PU:
         
         return sample_weights
 
+    @staticmethod
+    @memory.cache
+    def calculate_unique(df):
+        return df.nunique().tolist()
+    
+
+    @staticmethod
+    @memory.cache
+    def calculate_feature_min_max(X):
+        """Calculate min and max for each feature in X.
+
+        Args:
+            X (np.array): Input data with shape (n_samples, n_features)
+
+        Returns:
+            tuple: A tuple containing two arrays: min values and max values for each feature
+        """
+        return X.min(axis=0), X.max(axis=0)
+
 
     def fit(self, x_train_p: np.array, x_train_u: np.array) -> None:
         """Implement the boosting progress.
@@ -99,19 +93,20 @@ class AdaBoost_PU:
         y_train_u = np.ones(n_samples_u, dtype=np.float64)
         y_train_u[y_train_u > 0] = -1
 
-        ada_predictions_u = np.zeros(n_samples_u)
-        ada_predictions_p = np.zeros(n_samples_p)
+        df = pd.DataFrame(x_train_u)
+        unique_counts = self.calculate_unique(df)
+        unique_counts = np.array(unique_counts, dtype = np.float32)
+
+        feature_mins, feature_maxs = self.calculate_feature_min_max(x_train_u)
+        feature_mins = np.array(feature_mins, dtype = np.float32)
     
         for i_boost in tqdm(range(self.n_estimators)):
-            
             estimator = DecisionStump(self.prior, 
                                       sample_weights, 
-                                      ada_predictions_u, 
-                                      ada_predictions_p, 
                                       self.random_selection, 
                                       self.beta)
             
-            estimator.build(x_train_p, x_train_u)
+            estimator.build(x_train_p, x_train_u, unique_counts, feature_mins, feature_maxs)
 
             if estimator.Z <= 0:
                 warnings.warn(
@@ -132,9 +127,6 @@ class AdaBoost_PU:
                 break
             
             estimator_weight = estimator.estimator_weight
-
-            ada_predictions_u = estimator.ada_predictions_u
-            ada_predictions_p = estimator.ada_predictions_p
             
             if not i_boost == self.n_estimators - 1:
                 sample_weights['u'] = self.weight_calc(estimator.weight['u'], 
@@ -172,7 +164,7 @@ class AdaBoost_PU:
         return np.sign(pred)
     
     
-    def staged_predict(self, X: np.array, num_estimate: int) -> list:
+    def staged_predict(self, X: np.array, num_estimate: int, test=True) -> list:
         """Compute decision function of ``X`` for each boosting iteration.
         This method allows monitoring (i.e. determine error on testing/training set)
         after each boosting iteration.
@@ -189,6 +181,9 @@ class AdaBoost_PU:
             for estimator, estimator_weight in zip(self.estimators[:num_estimate], 
                                                    self.estimator_weights[:num_estimate])
         )
+        
+        if test:
+            return np.sign(pred)
         return pred
     
     
