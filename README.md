@@ -23,7 +23,7 @@ The four used datasets are:
 You can just run the python file: ```train.py```, it will be executed once with the default setting, and the result will be printed and saved. You can also try different parameters before you execute the python file.
 
 ```
-python3 /src/train.py \
+python3 src/train.py \
 --dataset breastcancer \
 --seed 5 \
 --num_estimator 100 \
